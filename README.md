@@ -1,6 +1,7 @@
 # 🚀 Note Studio AI - v4.9.0 PRO
 
 ![Note Studio Header](logo.png)
+[Note Studio AI](https://yasser-27.github.io/Note-Studio-Ai/)
 
 **Note Studio AI** is a cutting-edge, lightweight Integrated Development Environment (IDE) built for developers who prioritize privacy, speed, and local AI capabilities. It integrates a powerful **Local LLM** that runs directly on your machine, providing AI assistance without needing an internet connection.
 
