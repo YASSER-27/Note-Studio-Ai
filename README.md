@@ -27,6 +27,16 @@
 
 ---
 
+# v4.9.1
+Latest Updates:
+
+* ** AI Engine: Integrated a powerful new model with advanced logical reasoning.
+
+* ** Chat Experience: Launched a modern AI chat interface with enhanced features.
+
+* ** Management Tools: Added options to save, delete, and export conversations to PDF.
+
+Stability: Resolved various bugs and improved overall system performance.
 ## 🛠️ Tech Stack
 
 * **Electron.js** - For a robust cross-platform desktop experience.
