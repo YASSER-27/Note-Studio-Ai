@@ -1,6 +1,6 @@
 <div align="center">
 <a href="#">
-    <img height="120" alt="Thanks for visiting my profile" width="100%" src="[https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=Yasser%2027](https://capsule-render.vercel.app/api?type=wave&height=300&color=gradient&text=Yasser%2027&desc=build%20the%20future&descAlign=50&descAlignY=62)"/>
+    <img height="120" alt="Thanks for visiting my profile" width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=Yasser%2027](https://capsule-render.vercel.app/api?type=wave&height=300&color=gradient&text=Yasser%2027&desc=build%20the%20future&descAlign=50&descAlignY=62"/>
 </a>
 <br>
 # 🚀 Note Studio AI - v4.9.0 PRO
