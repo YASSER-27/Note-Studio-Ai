@@ -1,3 +1,4 @@
+https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=Yasser%2027
 # 🚀 Note Studio AI - v4.9.0 PRO
 
 ![Note Studio Header](logo.png)
