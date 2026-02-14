@@ -27,6 +27,8 @@
 ---
 
 ## 📸 Screenshots
+
+| Editor Interface | Screenshots |
 | :---: | :---: |
 | ![Feature 2](img/4.png)  | ![Feature 1](img/3.png)  |
 | ![Feature 3](img/2.png)  | ![Feature 3](img/1.png)  |
