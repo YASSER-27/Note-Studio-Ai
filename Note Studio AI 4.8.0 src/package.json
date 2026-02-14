@@ -1,0 +1,84 @@
+{
+  "name": "note-studio",
+  "version": "4.8.0",
+  "description": "Professional Nota Ai By Yasser27",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"npm run dev\" \"wait-on -t 5000 http://localhost:5173 && electron .\"",
+    "pack": "electron-builder --dir",
+    "dist": "npm run build && electron-builder"
+  },
+  "keywords": [
+    "editor",
+    "code",
+    "electron"
+  ],
+  "author": "Yasser27",
+  "license": "MIT",
+  "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "archiver": "^6.0.1",
+    "axios": "^1.13.2",
+    "chokidar": "^3.6.0",
+    "extract-zip": "^2.0.1",
+    "lucide-react": "^0.263.1",
+    "monaco-editor": "^0.44.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "concurrently": "^8.2.2",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "vite": "^5.0.8",
+    "vite-plugin-monaco-editor": "^1.1.0",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.notestudio.app",
+    "productName": "Note Studio",
+    "asar": true,
+    "asarUnpack": [
+      "**/cpp/*",
+      "**/models/*"
+    ],
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "assets/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "models/",
+        "to": "models/",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "cpp/",
+        "to": "cpp/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}

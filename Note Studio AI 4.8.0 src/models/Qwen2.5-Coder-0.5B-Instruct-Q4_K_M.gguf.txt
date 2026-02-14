@@ -1,0 +1,1 @@
+download Qwen2.5-Coder-0.5B-Instruct-Q4_K_M.gguf from https://huggingface.co/itlwas/Qwen2.5-Coder-0.5B-Instruct-Q4_K_M-GGUF or any model you want

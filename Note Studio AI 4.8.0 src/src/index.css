@@ -1,0 +1,155 @@
+/* إعدادات الصفحة الأساسية */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html, #root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* منع التمرير الخارجي */
+  background-color: #000;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* الحاوية الكبرى - نظام Flexbox الأفقي */
+.main-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* --- النافذة اليسرى (الملفات) --- */
+.sidebar {
+  width: 250px;
+  min-width: 200px;
+  background: #151515;
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #888;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #222;
+}
+
+.sidebar-header button {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sidebar-header button:hover {
+  color: #cc5f00;
+}
+
+.file-tree {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.file-node {
+  padding: 6px 20px;
+  font-size: 13px;
+  color: #ccc;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-node:hover {
+  background: #2a2d2e;
+}
+
+.file-node.active {
+  background: #37373d;
+  color: #fff;
+}
+
+/* --- النافذة الأصلية (منطقة العمل) --- */
+.work-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* تقسيم رأسي للتبويبات، المحرر، والتيرمينال */
+  background: #1e1e1e;
+}
+
+/* شريط التبويبات */
+.tabs-strip {
+  display: flex;
+  background: #050505;
+  height: 35px;
+  overflow-x: auto;
+  border-bottom: 1px solid #222;
+}
+
+.tab-item {
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  background: #1a1a1a;
+  border-right: 1px solid #000;
+  cursor: pointer;
+  font-size: 12px;
+  color: #888;
+  min-width: 100px;
+  max-width: 200px;
+}
+
+.tab-item.selected {
+  background: #1e1e1e;
+  color: #fff;
+  border-top: 1px solid #007acc;
+}
+
+/* حاوية المحرر (مكان الكتابة) */
+.editor-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #444;
+  font-size: 18px;
+}
+
+/* --- التيرمينال (الأسفل) --- */
+.terminal-box {
+  height: 220px; /* طول التيرمينال */
+  background: #000;
+  border-top: 1px solid #333;
+  padding: 5px;
+}
+
+/* تخصيص الـ scrollbar ليكون نحيفاً */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}

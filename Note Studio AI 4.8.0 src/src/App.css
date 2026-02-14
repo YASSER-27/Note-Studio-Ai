@@ -1,0 +1,641 @@
+:root {
+  /* Core Theme Colors - Deep Dark #111112 */
+  --bg-dark: #111112;
+  --bg-side: #111112;
+  --bg-tabs: #111112;
+  --bg-title: #111112;
+  --bg-modal: #161618; /* أفتح قليلاً للتمييز */
+  --bg-status: #0d0d0e;
+  
+  /* Signature Accents */
+  --accent: #2ea043; /* تم تصحيح الكود اللوني من f الزائدة */
+  --accent-hover: #3fb950;
+  --accent-glow: rgba(46, 160, 67, 0.15);
+  
+--border: rgba(255, 255, 255, 0.04);
+  --border-bright: rgba(255, 255, 255, 0.08);
+  
+  /* Text */
+  --text-main: #ffffff;
+  --text-dim: #949494;
+  --text-muted: #525252;
+  
+  /* States & Layout */
+ --hover-bg: rgba(255, 255, 255, 0.03);
+  --selected-bg: rgba(46, 160, 67, 0.08);
+  --radius-xl: 14px;
+  --radius-lg: 10px;
+  --radius-md: 6px;
+  --error: #f85149;
+}
+/* --- 1. Reset & Global Styles --- */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  outline: none; 
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-main);
+  overflow: hidden;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-main { 
+  display: flex; 
+  flex-direction: column; 
+  height: 100vh; /* يمنع التطبيق من تجاوز طول الشاشة */
+  overflow: hidden; 
+}
+
+/* --- 2. Title Bar (شريط العنوان العلوي) --- */
+.custom-title-bar {
+  height: 35px;
+  background: var(--bg-title);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  -webkit-app-region: drag;
+  border-bottom: 1px solid var(--border);
+}
+/* الحاوية الخلفية الشفافة */
+.search-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+  z-index: 10001;
+  pointer-events: all;
+}
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #1e1e1e;
+}
+/* صندوق البحث الرئيسي */
+.search-container {
+  width: 500px;
+  background: #252526;
+  border: 1px solid #454545;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* منطقة الإدخال العلوي */
+.search-header {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  background: #333333;
+}
+
+.search-input {
+  flex: 1;
+  background: #3c3c3c;
+  border: 1px solid #007acc;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 2px;
+  outline: none;
+}
+
+.close-search-btn {
+  background: transparent;
+  border: none;
+  color: #cccccc;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.close-search-btn:hover { color: white; }
+
+/* منطقة النتائج */
+.search-results {
+  max-height: 350px;
+  overflow-y: auto;
+  background: #252526;
+}
+
+.search-result-item {
+  padding: 8px 15px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+.search-result-item:hover { background: #2a2d2e; }
+
+.search-result-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.file-name { color: #569cd6; font-size: 13px; font-weight: bold; }
+
+.search-result-preview {
+  display: block;
+  font-size: 12px;
+  color: #aaaaaa;
+  font-family: 'Consolas', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.no-results-text {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+}
+
+.brand-zone { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  font-size: 13px; 
+  font-weight: 600; 
+  color: var(--text-main);
+}
+
+.brand-zone svg { color: var(--accent) !important; }
+
+.window-actions { display: flex; -webkit-app-region: no-drag; }
+.window-actions button {
+  width: 46px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.window-actions button:hover { background: var(--hover-bg); color: white; }
+.window-actions button.close-btn:hover { background: var(--error); color: white; }
+
+/* --- 3. Menu Bar (شريط القوائم) --- */
+.menu-bar {
+  height: 32px;
+  background: var(--bg-title);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--border);
+  -webkit-app-region: no-drag;
+  gap: 5px;
+  position: relative;
+}
+
+.menu-item {
+  position: relative;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.15s;
+}
+
+.menu-item:hover, .menu-item.active {
+  background: var(--hover-bg);
+  color: var(--text-main);
+}
+
+/* القائمة المنسدلة (Dropdown) */
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: var(--bg-side);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 240px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  z-index: 10001;
+  padding: 6px;
+  backdrop-filter: blur(12px);
+}
+
+.menu-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-main);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.1s;
+}
+
+.menu-option:hover { background: var(--accent); color: white; }
+.menu-option svg { margin-right: 10px; flex-shrink: 0; }
+.menu-option-shortcut { font-size: 11px; color: var(--text-dim); margin-left: 20px; }
+.menu-separator { height: 1px; background: var(--border); margin: 6px 0; }
+
+/* --- 4. Main Content Layout --- */
+.content-wrapper { 
+  display: flex; 
+  flex: 1; /* يأخذ كل المساحة المتاحة ويضغط الشات للأسفل */
+  overflow: hidden; 
+  background: var(--bg-dark); 
+}
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+/* Sidebar (القائمة الجانبية) */
+.app-sidebar {
+  width: 265px;
+  background: var(--bg-side);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.sidebar-header {
+  padding: 15px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-icons { display: flex; gap: 10px; }
+.header-icons svg {
+  cursor: pointer;
+  color: var(--text-dim);
+  transition: 0.2s;
+  padding: 4px;
+  border-radius: 4px;
+}
+.header-icons svg:hover { color: white; background-color: var(--hover-bg); }
+
+/* File Tree */
+.tree-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: 0.15s;
+}
+.tree-item {
+  /* تفعيل السحب الفوري */
+  -webkit-user-drag: element !important; 
+  /* منع اختيار النص الذي يعيق بداية السحب */
+  user-select: none !important;
+  /* تجنب تأخير اللمس */
+  touch-action: none;
+}
+
+/* تأكد أن الأيقونة والنص لا يستقبلان أحداث الماوس بشكل منفصل */
+.tree-item * {
+  pointer-events: none; 
+}
+
+/* إعادة تفعيل الأحداث للأزرار أو المدخلات فقط إذا وجدت داخلها */
+.tree-item input {
+  pointer-events: auto;
+}
+
+.tree-item:hover { background: var(--hover-bg); color: var(--text-main); }
+.tree-item.active { 
+  background: var(--accent-glow); 
+  color: var(--accent); 
+  border-left-color: var(--accent);
+  font-weight: 500;
+}
+
+/* Inputs (Rename & New File) */
+.rename-input, .new-file-input {
+  width: calc(100% - 30px);
+  margin: 5px 15px;
+  background: var(--bg-dark);
+  border: 1px solid var(--accent);
+  color: white;
+  padding: 6px 10px;
+  outline: none;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+/* --- 5. Editor Area & Tabs --- */
+.editor-container { flex: 1; display: flex; flex-direction: column; }
+
+.tabs-header {
+  display: flex;
+  background: var(--bg-side);
+  height: 40px;
+  border-bottom: 1px solid var(--border);
+  justify-content: space-between;
+}
+
+.tabs-wrapper-scroll { display: flex; overflow-x: auto; flex: 1; }
+
+.no-folder-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    align-items: center;
+}
+
+
+/* الزر الأخضر الأساسي */
+.gray-btn, .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%; /* لكي تأخذ الأزرار عرض السايدبار */
+}
+
+.gray-btn:hover, .btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+/* تنسيق خانة الإدخال في المودال */
+.standard-input {
+    width: 100%;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.standard-input:focus {
+    border-color: var(--accent);
+}
+.monaco-container-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.editor-viewport {
+    background: var(--bg-dark);
+}
+.tabs-header {
+  display: flex;
+  background: #111112 !important; 
+  height: 40px;
+  border-bottom: 1px solid var(--border);
+  width: %;
+}
+.tab-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px; /* تقليل الحشو الجانبي */
+  background: #111112 !important;
+  border-right: 1px solid var(--border);
+  font-size: 11px; /* تصغير الخط قليلاً ليتناسب مع الحجم الجديد */
+  color: var(--text-dim);
+  cursor: pointer;
+  min-width: 100px; /* تقليل العرض الأدنى */
+  max-width: 180px;
+  position: relative;
+  height: 100%;
+  outline: none !important;
+  user-select: none;
+}
+.save-notification {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #1e1e1e;
+  border: 1px solid #2ea043;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  z-index: 10000;
+  animation: slideInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.save-notification.error {
+  border-color: #f85149;
+}
+
+.save-icon {
+  color: #2ea043;
+  font-size: 18px;
+}
+
+.error .save-icon {
+  color: #f85149;
+}
+
+.save-text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.save-status {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.save-filename {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+/* الحاوية التي تسبح فيها التبويبات */
+.tabs-wrapper-scroll { 
+  display: flex; 
+  background: #111112 !important; /* لضمان عدم ظهور لون خلف التبويبات */
+  overflow-x: auto; 
+  flex: 1; 
+}
+
+/* تأكيد لون التبويب نفسه */
+.tab-pill {
+  background: #111112 !important;
+  border-right: 1px solid var(--border);
+  /* باقي الخصائص كما هي */
+}
+
+/* تأكيد لون التبويب النشط */
+.tab-pill.active { 
+  background: #111112 !important; 
+  color: white; 
+}
+
+.tab-close { opacity: 0; border-radius: 4px; padding: 2px; }
+.tab-pill:hover .tab-close { opacity: 0.6; }
+.tab-close:hover { background: var(--error); color: white; opacity: 1 !important; }
+/* --- 6. Welcome Screen (شاشة الترحيب) --- */
+.welcome-screen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px;
+}
+
+.welcome-screen h1 {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.shortcut-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 650px;
+}
+
+.s-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--bg-side);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  transition: 0.3s;
+}
+
+.s-item:hover { border-color: var(--accent); transform: translateY(-3px); }
+.s-item span { color: var(--accent); font-weight: 700; background: var(--hover-bg); padding: 4px 8px; border-radius: 4px; }
+
+/* --- 7. Modals (النوافذ المنبثقة - الاحترافية) --- */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 50000;
+}
+
+.modal-content {
+  background: var(--bg-modal);
+  padding: 40px;
+  border-radius: 20px;
+  width: 520px;
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+  display: flex; flex-direction: column; gap: 25px;
+}
+
+.modal-content h3 { font-size: 22px; font-weight: 700; text-align: center; }
+
+/* Project Cards */
+.project-types { display: flex; gap: 20px; justify-content: center; }
+.p-card {
+  flex: 1; background: var(--bg-side); padding: 25px; border-radius: 15px;
+  border: 1px solid var(--border); cursor: pointer; transition: 0.3s;
+  display: flex; flex-direction: column; align-items: center; gap: 15px;
+}
+
+.p-card:hover { 
+  border-color: var(--accent); background: var(--hover-bg); 
+  transform: translateY(-8px); box-shadow: 0 10px 30px var(--accent-glow);
+}
+
+.p-card span { font-weight: 700; color: var(--text-main); }
+
+/* Form Styles */
+.project-form input {
+  width: 100%; padding: 14px;
+  background: var(--input-bg); border: 1px solid var(--border);
+  color: white; border-radius: 10px; font-size: 15px;
+  transition: 0.2s;
+}
+
+.project-form input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+.modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
+.modal-actions button {
+  padding: 12px 24px; border-radius: 10px; font-weight: 700;
+  cursor: pointer; transition: 0.2s; border: none;
+}
+
+.modal-actions button:first-child { background: var(--accent); color: white; }
+.modal-actions button:first-child:hover { background: var(--accent-hover); transform: translateY(-2px); }
+.modal-actions button.cancel { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+.modal-actions button.cancel:hover { background: var(--hover-bg); color: white; }
+
+/* --- 8. Context Menu (قائمة الماوس) --- */
+.context-menu {
+  position: fixed;
+  background: var(--bg-side);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+  z-index: 60000;
+  min-width: 220px;
+  padding: 6px;
+  backdrop-filter: blur(15px);
+}
+
+.context-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; font-size: 13px; color: var(--text-main);
+  cursor: pointer; border-radius: 6px; transition: 0.1s;
+}
+
+.context-item:hover { background: var(--accent); color: white; }
+.context-separator { height: 1px; background: var(--border); margin: 6px 4px; }
+
+/* --- 9. Scrollbars (أشرطة التمرير) --- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 20px;
+  border: 3px solid var(--bg-dark);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* Animations */
+.spin-anim { animation: spin 1s linear infinite; color: var(--accent); }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
