@@ -1,4 +1,4 @@
-# 🚀 Note Studio AI - v4.9.0 PRO
+# 🚀 Note Studio AI - v4.9.1 PRO
 
 ![Header](https://capsule-render.vercel.app/api?type=waving&height=250&color=gradient&text=NoteStudioAI&fontSize=50&animation=fadeIn)
 
