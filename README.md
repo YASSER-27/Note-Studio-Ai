@@ -27,10 +27,9 @@
 ---
 
 ## 📸 Screenshots
-
-![Feature 1](1.png) 
-![Feature 2](2.png) 
-![Feature 3](3.png)
+| :---: | :---: |
+| ![Feature 2](img/4.png)  | ![Feature 1](img/3.png)  |
+| ![Feature 3](img/2.png)  | ![Feature 3](img/1.png)  |
 
 ---
 
